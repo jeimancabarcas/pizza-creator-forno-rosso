@@ -16,7 +16,13 @@
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ES2022"
+    "module": "ES2022",
+    "typeRoots": [
+      // So other type imports still work
+      "./node_modules/@types",
+      // To detect primeng modules
+      "./node_modules/primeng"
+    ]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

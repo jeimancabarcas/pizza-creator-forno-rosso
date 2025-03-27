@@ -1,0 +1,345 @@
+.pizza-viewer {
+  position: relative;
+}
+
+.pizza {
+  height: 300px;
+  overflow: hidden;
+  z-index: 1;
+  position: relative;
+  transform: translate3d(-530px, -282px, 0);
+  transition: transform 0.2s;
+
+  &--active {
+    transform: translate3d(0, -30px, 0);
+  }
+
+  &__board {
+    background: url('/assets/toppings/board.svg') no-repeat 0 20px;
+    background-size: contain;
+    width: 420px;
+    height: 300px;
+    position: absolute;
+    z-index: 1;
+    top: 20px;
+  }
+
+  &__base {
+    background: url('/assets/toppings/base.svg') no-repeat;
+    background-size: contain;
+    width: 330px;
+    height: 322px;
+    position: absolute;
+    left: 70px;
+    top: 30px;
+    z-index: 2;
+  }
+
+  &__toppings {
+    width: 300px;
+    height: 160px;
+    position: absolute;
+    right: 60px;
+    top: 46px;
+    z-index: 3;
+    &-container {
+      width: 300px;
+    }
+  }
+
+  &__topping {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    &--anchovy {
+      background-image: url('/assets/toppings/anchovy.svg');
+      width: 51px;
+      height: 37px;
+
+      &:nth-child(1) {
+        left: 140px;
+        top: 26px;
+      }
+      &:nth-child(2) {
+        left: 58px;
+        top: 82px;
+      }
+      &:nth-child(3) {
+        left: 263px;
+        top: 95px;
+      }
+      &:nth-child(4), &:nth-child(5) {
+        display: none;
+      }
+    }
+    &--bacon {
+      background-image: url('/assets/toppings/bacon.svg');
+      width: 56px;
+      height: 31px;
+
+      &:nth-child(1) {
+        left: 124px;
+        top: 50px;
+      }
+      &:nth-child(2) {
+        left: 59px;
+        top: 100px;
+      }
+      &:nth-child(3) {
+        left: 192px;
+        top: 86px;
+      }
+      &:nth-child(4) {
+        left: 259px;
+        top: 59px;
+      }
+      &:nth-child(5) {
+        left: 160px;
+        top: 124px;
+      }
+    }
+    &--basil {
+      background-image: url('/assets/toppings/basil.svg');
+      width: 46px;
+      height: 32px;
+
+      &:nth-child(1) {
+        left: 136px;
+        top: 63px;
+      }
+      &:nth-child(2) {
+        left: 126px;
+        top: 117px;
+      }
+      &:nth-child(3) {
+        left: 222px;
+        top: 98px;
+      }
+      &:nth-child(4), &:nth-child(5) {
+        display: none;
+      }
+    }
+    &--chili {
+      background-image: url('/assets/toppings/chili.svg');
+      width: 63px;
+      height: 35px;
+
+      &:nth-child(1) {
+        left: 150px;
+        top: 40px;
+      }
+      &:nth-child(2) {
+        left: 68px;
+        top: 77px;
+      }
+      &:nth-child(3) {
+        left: 162px;
+        top: 124px;
+      }
+      &:nth-child(4) {
+        left: 210px;
+        top: 17px;
+      }
+      &:nth-child(5) {
+        left: 230px;
+        top: 100px;
+      }
+    }
+    &--mozzarella {
+      background-image: url('/assets/toppings/mozzarella.svg');
+      width: 46px;
+      height: 32px;
+
+      &:nth-child(1) {
+        left: 66px;
+        top: 106px;
+      }
+      &:nth-child(2) {
+        left: 186px;
+        top: 114px;
+      }
+      &:nth-child(3) {
+        left: 162px;
+        top: 8px;
+      }
+      &:nth-child(4), &:nth-child(5) {
+        display: none;
+      }
+    }
+    &--mushroom {
+      background-image: url('/assets/toppings/mushroom.svg');
+      width: 45px;
+      height: 26px;
+
+      &:nth-child(1) {
+        left: 120px;
+        top: 20px;
+      }
+      &:nth-child(2) {
+        left: 50px;
+        top: 60px;
+      }
+      &:nth-child(3) {
+        left: 100px;
+        top: 120px;
+      }
+      &:nth-child(4) {
+        left: 240px;
+        top: 30px;
+      }
+      &:nth-child(5) {
+        left: 220px;
+        top: 129px;
+      }
+    }
+    &--olive {
+      background-image: url('/assets/toppings/olive.svg');
+      width: 45px;
+      height: 26px;
+
+      &:nth-child(1) {
+        left: 161px;
+        top: 60px;
+      }
+      &:nth-child(2) {
+        left: 90px;
+        top: 57px;
+      }
+      &:nth-child(3) {
+        left: 110px;
+        top: 110px;
+      }
+      &:nth-child(4) {
+        left: 279px;
+        top: 47px;
+      }
+      &:nth-child(5) {
+        display: none;
+      }
+    }
+    &--onion {
+      background-image: url('/assets/toppings/onion.svg');
+      width: 57px;
+      height: 36px;
+
+      &:nth-child(1) {
+        left: 101px;
+        top: 55px;
+      }
+      &:nth-child(2) {
+        left: 50px;
+        top: 61px;
+      }
+      &:nth-child(3) {
+        left: 261px;
+        top: 55px;
+      }
+      &:nth-child(4) {
+        left: 172px;
+        top: 132px;
+      }
+      &:nth-child(5) {
+        display: none;
+      }
+    }
+    &--pepper {
+      background-image: url('/assets/toppings/pepper.svg');
+      width: 57px;
+      height: 36px;
+
+      &:nth-child(1) {
+        left: 122px;
+        top: 30px;
+      }
+      &:nth-child(2) {
+        left: 175px;
+        top: 87px;
+      }
+      &:nth-child(3) {
+        left: 60px;
+        top: 81px;
+      }
+      &:nth-child(4) {
+        left: 282px;
+        top: 69px;
+      }
+      &:nth-child(5) {
+        left: 105px;
+        top: 117px;
+      }
+    }
+    &--pepperoni {
+      background-image: url('/assets/toppings/pepperoni.svg');
+      width: 57px;
+      height: 36px;
+
+      &:nth-child(1) {
+        left: 222px;
+        top: 35px;
+      }
+      &:nth-child(2) {
+        left: 145px;
+        top: 107px;
+      }
+      &:nth-child(3) {
+        left: 81px;
+        top: 25px;
+      }
+      &:nth-child(4) {
+        left: 221px;
+        top: 80px;
+      }
+      &:nth-child(5) {
+        left: 75px;
+        top: 90px;
+      }
+    }
+    &--sweetcorn {
+      background-image: url('/assets/toppings/sweetcorn.svg');
+      width: 57px;
+      height: 36px;
+
+      &:nth-child(1) {
+        left: 192px;
+        top: 35px;
+      }
+      &:nth-child(2) {
+        left: 60px;
+        top: 41px;
+      }
+      &:nth-child(3) {
+        left: 212px;
+        top: 110px;
+      }
+      &:nth-child(4), &:nth-child(5) {
+        display: none;
+      }
+    }
+    &--tomato {
+      background-image: url('/assets/toppings/tomato.svg');
+      width: 57px;
+      height: 36px;
+
+      &:nth-child(1) {
+        left: 175px;
+        top: 117px;
+      }
+      &:nth-child(2) {
+        left: 60px;
+        top: 41px;
+      }
+      &:nth-child(3) {
+        left: 85px;
+        top: 100px;
+      }
+      &:nth-child(4) {
+        left: 280px;
+        top: 80px;
+      }
+      &:nth-child(5) {
+        display: none;
+      }
+    }
+  }
+}
