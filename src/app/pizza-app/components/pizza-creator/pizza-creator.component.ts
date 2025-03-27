@@ -1,5 +1,6 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { FormArray } from '@angular/forms';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, inject } from '@angular/core';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { StateService } from '../../state.service';
 
 @Component({
   selector: 'pizza-creator',
@@ -16,7 +17,7 @@ import { FormArray } from '@angular/forms';
           Add pizza
         </button>
       </h2>
-
+      
       <div *ngFor="let pizza of pizzas.controls; let i = index;">
         <div class="pizza-creator__header" (click)="togglePizza(i)">
           
@@ -67,20 +68,11 @@ import { FormArray } from '@angular/forms';
   `
 })
 export class PizzaCreatorComponent {
-
+  stateService = inject(StateService)
+  fb = inject(FormBuilder)
   private visiblePizza: number = 0;
+  pizzas: any = this.stateService.form.get('pizzas');
 
-  @Input()
-  pizzas: any;
-
-  @Output()
-  add = new EventEmitter<any>();
-
-  @Output()
-  remove = new EventEmitter<any>();
-
-  @Output()
-  toggle = new EventEmitter<number>();
 
   get openPizza() {
     return this.visiblePizza;
@@ -88,26 +80,19 @@ export class PizzaCreatorComponent {
 
   set openPizza(index: number) {
     this.visiblePizza = index;
-    if (~index) {
-      this.toggle.emit(index);
-    }
   }
-
   addPizza() {
-    this.add.emit();
-    this.openPizza = this.pizzas?.length - 1;
+    const control = this.stateService.form.get('pizzas') as FormArray;
+    control.push(this.stateService.createPizza());
   }
 
   removePizza(index: number) {
-    this.remove.emit(index);
-    this.openPizza = this.pizzas.length - 1;
+    const control = this.stateService.form.get('pizzas') as FormArray;
+    control.removeAt(index);
+  }
+
+  togglePizza(index: number) {
+    this.stateService.activePizza = index;
   }
   
-  togglePizza(index: number) {
-    if (this.openPizza === index) {
-      this.openPizza = -1;
-      return;
-    }
-    this.openPizza = index;
-  }
 }

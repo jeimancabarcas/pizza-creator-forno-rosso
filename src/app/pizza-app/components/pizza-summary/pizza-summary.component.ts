@@ -1,6 +1,7 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, inject } from '@angular/core';
 
 import { FormGroup } from '@angular/forms';
+import { StateService } from '../../state.service';
 
 @Component({
   selector: 'pizza-summary',
@@ -51,12 +52,8 @@ import { FormGroup } from '@angular/forms';
   `
 })
 export class PizzaSummaryComponent {
-  @Input()
-  parent!: FormGroup;
-
-  @Input()
-  total!: string;
-
-  @Input()
-  prices: any;
+  stateService = inject(StateService);
+  parent: FormGroup = this.stateService.form;
+  total: number = this.stateService.total;
+  prices: any = this.stateService.prices;
 }

@@ -8,6 +8,7 @@ import { PizzaSizeComponent } from './components/pizza-size/pizza-size.component
 import { PizzaToppingsComponent } from './components/pizza-toppings/pizza-toppings.component';
 import { PizzaViewerComponent } from './components/pizza-viewer/pizza-viewer.component';
 import { PizzaSummaryComponent } from './components/pizza-summary/pizza-summary.component';
+import { StateService } from './state.service';
 
 @NgModule({
   imports: [
@@ -23,6 +24,9 @@ import { PizzaSummaryComponent } from './components/pizza-summary/pizza-summary.
     PizzaToppingsComponent,
     PizzaViewerComponent,
     PizzaSummaryComponent
+  ],
+  providers: [
+    StateService
   ],
   exports: [
     PizzaAppComponent
