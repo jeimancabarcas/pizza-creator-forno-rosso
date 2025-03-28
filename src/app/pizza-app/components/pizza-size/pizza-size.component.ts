@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { StateService } from '../../state.service';
 @Component({
   selector: 'pizza-size',
   styleUrls: ['pizza-size.component.scss'],
@@ -27,15 +28,55 @@ import { Component } from '@angular/core';
   `
 })
 export class PizzaSizeComponent {
-  sizeSelected: any = { type: 'large', inches: 40, label: 'Grande', slices: 10 };
+
+  sizeSelected: any;
+  constructor(private stateService: StateService) {
+    this.selectSize(this.sizes[0])
+  }
   sizes: any[] = [
-    { type: 'large', inches: 40, label: 'Grande', slices: 10 },
-    { type: 'medium', inches: 33, label: 'Mediana', slices: 8 },
-    { type: 'small', inches: 27, label: 'Small', slices: 6 },
-    { type: 'personal', inches: 20, label: 'Pizzeta', slices: 4 },
+    { 
+      type: 'large', 
+      inches: 40, 
+      label: 'Grande', 
+      slices: 10, 
+      ingredientPrice: 5000,
+      cheeseBorderPrice: 12000,
+      braisedPrice: 10000,
+      additionCheese: 10000
+    },
+    { 
+      type: 'medium', 
+      inches: 33, 
+      label: 'Mediana', 
+      slices: 8, 
+      ingredientPrice: 4000,
+      cheeseBorderPrice: 8000,
+      braisedPrice: 10000,
+      additionCheese: 10000
+    },
+    { 
+      type: 'small', 
+      inches: 27, 
+      label: 'Small', 
+      slices: 6, 
+      ingredientPrice: 3000,
+      cheeseBorderPrice: 6000,
+      braisedPrice: 10000,
+      additionCheese: 10000
+    },
+    { type: 'personal', 
+      inches: 20, 
+      label: 'Pizzeta', 
+      slices: 4, 
+      ingredientPrice: 2000,
+      cheeseBorderPrice: 5000,
+      braisedPrice: 10000,
+      additionCheese: 10000
+    },
   ];
 
   selectSize(sizeSelected: any) {
     this.sizeSelected = sizeSelected;
+    this.stateService.sizeSelected.set(sizeSelected);
   }
 }

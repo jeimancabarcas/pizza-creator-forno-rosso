@@ -1,15 +1,7 @@
-import { Component, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
-const PIZZA_TOPPINGS_ACCESSOR = {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => PizzaToppingsComponent),
-  multi: true
-};
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'pizza-toppings',
-  providers: [PIZZA_TOPPINGS_ACCESSOR],
   styleUrls: ['pizza-toppings.component.scss'],
   standalone: false,
   template: `
@@ -18,7 +10,9 @@ const PIZZA_TOPPINGS_ACCESSOR = {
           
           <div (click)="topping.selected = !topping.selected"
                 [class.active]="topping.selected"
-                class="place-content-end place-content-center  cursor-pointer grayscale hover:grayscale-0 transition duration-200">
+                class="place-content-end place-content-center
+                  rounded-xl p-2
+                  cursor-pointer grayscale hover:grayscale-0 transition duration-200">
             <div class="flex justify-center">
               <img src="assets/toppings/{{topping.key}}.svg" width="30" height="30" alt="">
             </div>
@@ -30,7 +24,7 @@ const PIZZA_TOPPINGS_ACCESSOR = {
       </div>
   `
 })
-export class PizzaToppingsComponent implements ControlValueAccessor {
+export class PizzaToppingsComponent {
   
   toppings = [
     { label: 'Anchoa', key: 'anchovy', selected: true },
@@ -48,38 +42,4 @@ export class PizzaToppingsComponent implements ControlValueAccessor {
   ];
 
   value: string[] = [];
-  focused!: string;
-
-  private onTouch!: Function;
-  private onModelChange!: Function;
-
-  registerOnChange(fn: any) {
-    this.onModelChange = fn;
-  }
-
-  registerOnTouched(fn: any) {
-    this.onTouch = fn;
-  }
-
-  writeValue(value: any) {
-    this.value = value;
-  }
-
-  updateTopping(topping: string) {
-    if (this.value.includes(topping)) {
-      this.value = this.value.filter((x: string) => topping !== x);
-    } else {
-      this.value = this.value.concat([topping]);
-    }
-    this.onModelChange(this.value);
-  }
-
-  onBlur(value: string) {
-    this.focused = '';
-  }
-
-  onFocus(value: string) {
-    this.focused = value;
-    this.onTouch();
-  }
 }
