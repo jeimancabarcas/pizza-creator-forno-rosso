@@ -10,6 +10,7 @@ import { PizzaViewerComponent } from './components/pizza-viewer/pizza-viewer.com
 import { PizzaSummaryComponent } from './components/pizza-summary/pizza-summary.component';
 import { StateService } from './state.service';
 import { AccordionContent, AccordionModule } from 'primeng/accordion';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { AccordionContent, AccordionModule } from 'primeng/accordion';
     ReactiveFormsModule,
     FormsModule,
     AccordionModule,
-    AccordionContent
+    AccordionContent,
+    CardModule
   ],
   declarations: [
     PizzaAppComponent,

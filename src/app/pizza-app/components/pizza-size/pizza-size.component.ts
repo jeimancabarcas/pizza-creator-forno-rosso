@@ -13,7 +13,14 @@ export const PIZZA_SIZE_ACCESSOR = {
   styleUrls: ['pizza-size.component.scss'],
   standalone: false,
   template: `
-    <div class="pizza-size section">
+  <div class="grid grid-cols-2 gap-4 w-full">
+    @for(size of sizes; track size.type) {
+
+      <p-card [header]="size.label">
+      </p-card>
+    }
+  </div>
+    <!-- <div class="pizza-size section">
       <label *ngFor="let size of sizes; let i = index;"
           class="pizza-size__item"
           [class.pizza-size__item--active]="value === size.type"
@@ -37,46 +44,14 @@ export const PIZZA_SIZE_ACCESSOR = {
         </div>
         {{ size.type | titlecase }} ({{ size.inches }}")
       </label>
-    </div>
+    </div> -->
   `
 })
-export class PizzaSizeComponent implements ControlValueAccessor {
-  
-  private onModelChange!: Function;
-  private onTouch!: Function;
-  
-  value!: string;
-  focused!: string;
-  
+export class PizzaSizeComponent {
   sizes: any[] = [
-    { type: 'large', inches: 13 },
-    { type: 'medium', inches: 11 },
-    { type: 'small', inches: 9 }
+    { type: 'large', inches: 40, label: 'Grande' },
+    { type: 'medium', inches: 33, label: 'Mediana' },
+    { type: 'small', inches: 27, label: 'Small' },
+    { type: 'personal', inches: 20, label: 'Pizzeta' },
   ];
-
-  registerOnChange(fn: Function) {
-    this.onModelChange = fn;
-  }
-
-  registerOnTouched(fn: Function) {
-    this.onTouch = fn;
-  }
-
-  writeValue(value: string) {
-    this.value = value;
-  }
-
-  onChange(value: string) {
-    this.value = value;
-    this.onModelChange(value);
-  }
-
-  onBlur(value: string) {
-    this.focused = '';
-  }
-
-  onFocus(value: string) {
-    this.focused = value;
-    this.onTouch();
-  }
 }
