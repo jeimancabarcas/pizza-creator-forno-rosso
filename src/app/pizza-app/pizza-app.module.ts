@@ -12,6 +12,11 @@ import { StateService } from './state.service';
 import { AccordionContent, AccordionModule } from 'primeng/accordion';
 import { CardModule } from 'primeng/card';
 import { TooltipModule } from 'primeng/tooltip';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { CheckboxModule } from 'primeng/checkbox';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   imports: [
@@ -21,7 +26,12 @@ import { TooltipModule } from 'primeng/tooltip';
     AccordionModule,
     AccordionContent,
     CardModule,
-    TooltipModule
+    TooltipModule,
+    RadioButtonModule,
+    SelectButtonModule,
+    CheckboxModule,
+    DialogModule,
+    ButtonModule
   ],
   declarations: [
     PizzaAppComponent,

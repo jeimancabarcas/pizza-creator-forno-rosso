@@ -13,6 +13,11 @@ import { StateService } from '../../state.service';
 export class PizzaAppComponent implements OnInit {
   private stateService = inject(StateService)
 
+  visible: boolean = false;
+
+  showDialog() {
+      this.visible = true;
+  }
   constructor() {
     
     this.stateService.form = this.stateService.fb.group({

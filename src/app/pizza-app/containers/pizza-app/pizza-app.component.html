@@ -1,7 +1,48 @@
 
 <div class="p-3 w-full">
+  <p-button (click)="showDialog()" label="Agregar Pizza" icon="pi-plus" />
     <div>
       <pizza-form>
         </pizza-form>
+        <pizza-summary>
+          </pizza-summary> 
     </div>
+  <p-button (click)="showDialog()" label="Crear Orden" icon="pi-plus" />
   </div>
+<p-dialog header="Agregar Pizza" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+
+    <div>
+      <!-- <pizza-viewer
+        [pizzas]="pizzas"
+        [activePizza]="0">
+      </pizza-viewer> -->
+      <p>
+        Los precios de las adiciones e ingredientes variaran dependiendo del tamaño de tu pizza
+      </p>
+      <div>
+        <h3>Selecciona el tamaño <span class="required">*</span></h3>
+        <div class="mt-4">
+          <pizza-size>
+          </pizza-size>
+        </div>
+      </div>
+      <div class="mt-4">
+        <h3>Selecciona los ingredientes (Maximo 6) *</h3>
+        <div class="mt-4">
+          <pizza-toppings>
+          </pizza-toppings>
+        </div>
+      </div>
+      <div class="mt-4">
+        <h3>Adiciones</h3>
+        <div class="mt-4">
+          <pizza-creator>
+          </pizza-creator>
+        </div>
+      </div>
+      <div class="mt-2 flex items-center justify-end gap-x-6">
+        <button type="button" class="text-sm/6 font-semibold text-gray-900">Cancel</button>
+        <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+      </div>
+    </div>
+</p-dialog>

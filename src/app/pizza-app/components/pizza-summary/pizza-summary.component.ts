@@ -40,13 +40,6 @@ import { StateService } from '../../state.service';
       <div class="pizza-summary__total-price">
         Total: {{ total | currency:'USD':true }}
       </div>
-
-      <button 
-        type="submit" 
-        class="pizza-summary__button"
-        [disabled]="parent.invalid">
-        Place order
-      </button>
     </div>
 
   `

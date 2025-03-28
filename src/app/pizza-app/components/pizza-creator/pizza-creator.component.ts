@@ -9,48 +9,18 @@ import { StateService } from '../../state.service';
   standalone: false,
   template: `
     <div class="pizza-creator">
-
-      <h2>
-        Selecciona tus Pizzas
-        <button class="button" type="button" (click)="addPizza()">
-          <i class="fa fa-plus"></i>
-          Agregar pizza
-        </button>
-      </h2>
-      <p-accordion value="0">
-        
-        @for(pizza of pizzas.controls; track pizza.name; let i = $index) {
-          <p-accordion-panel value="0">
-              <p-accordion-header>
-                <span class="flex justify-between items-center gap-2 w-full px-2">
-                    <span class="font-bold whitespace-nowrap">
-                      Pizza #{{i + 1}}
-                    </span>
-
-                    Eliminar
-                </span>
-
-              </p-accordion-header>
-              <p-accordion-content>
-                <div>
-                  
-                  <h3>Selecciona el tamaño <span class="required">*</span></h3>
-                  <pizza-size>
-                  </pizza-size>
-
-                  <h3>Selecciona los ingredientes</h3>
-
-                  <!-- <pizza-viewer
-                    [pizzas]="pizzas"
-                    [activePizza]="0">
-                  </pizza-viewer> -->
-                  <pizza-toppings >
-                  </pizza-toppings>
-                </div>
-              </p-accordion-content>
-          </p-accordion-panel>
-        }
-      </p-accordion>
+      <div class="flex items-center">
+          <p-checkbox inputId="ingredient1" name="pizza"value="Cheese" [(ngModel)]="additional" />
+          <label for="ingredient1" class="ml-2"> Quiero una adicion de queso ($5000)</label>
+      </div>
+      <div class="flex items-center">
+          <p-checkbox inputId="ingredient2" name="pizza" value="Mushroom" [(ngModel)]="additional" />
+          <label for="ingredient2" class="ml-2"> Quiero borde de queso  ($10000)</label>
+      </div>
+      <div class="flex items-center">
+          <p-checkbox inputId="ingredient3" name="pizza" value="Pepper" [(ngModel)]="additional" />
+          <label for="ingredient3" class="ml-2"> Quiero que mi pizza sea estofada ($2000)</label>
+      </div>
     </div>
   `
 })
@@ -59,7 +29,7 @@ export class PizzaCreatorComponent {
   fb = inject(FormBuilder)
   private visiblePizza: number = 0;
   pizzas: any = this.stateService.form.get('pizzas');
-
+  additional: any;
 
   get openPizza() {
     return this.visiblePizza;
