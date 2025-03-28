@@ -36,19 +36,12 @@ export class PizzaAppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.calculateTotal(this.stateService.form.get('pizzas')?.value);
-    this.stateService.form.get('pizzas')?.valueChanges
-      .subscribe(value => this.calculateTotal(value));
   }
 
-
-
-  calculateTotal(value: any) {
-    const price = value.reduce((prev: number, next: any) => {
-      const price = this.stateService.prices[next.size];
-      return prev + price.base + (price.toppings * next.toppings.length);
-    }, 0);
-    this.stateService.total = price.toFixed(2);
+  savePizza() {
+    console.log("Size", this.stateService.sizeSelected())
+    console.log("Toppings", this.stateService.toppingsSelected())
+    console.log("Additions", this.stateService.additional)
   }
 
 

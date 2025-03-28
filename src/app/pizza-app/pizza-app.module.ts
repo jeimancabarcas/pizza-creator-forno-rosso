@@ -17,6 +17,9 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { MessageModule } from 'primeng/message';
 
 @NgModule({
   imports: [
@@ -31,7 +34,9 @@ import { ButtonModule } from 'primeng/button';
     SelectButtonModule,
     CheckboxModule,
     DialogModule,
-    ButtonModule
+    ButtonModule,
+    ToastModule,
+    MessageModule
   ],
   declarations: [
     PizzaAppComponent,
@@ -43,7 +48,8 @@ import { ButtonModule } from 'primeng/button';
     PizzaSummaryComponent
   ],
   providers: [
-    StateService
+    StateService,
+    MessageService
   ],
   exports: [
     PizzaAppComponent

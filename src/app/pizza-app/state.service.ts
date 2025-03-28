@@ -19,6 +19,8 @@ export class StateService {
       braisedPrice: 10000,
       additionCheese: 10000
   })
+  toppingsSelected = signal<any[]>([])
+  additional = []
 
   prices: any = {
     small: { base: 9.99, toppings: 0.69 },

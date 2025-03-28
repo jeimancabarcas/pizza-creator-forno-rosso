@@ -1,14 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { StateService } from '../../state.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'pizza-toppings',
   styleUrls: ['pizza-toppings.component.scss'],
   standalone: false,
   template: `
+   @if(this.stateService.toppingsSelected().length >= 6) {
+    <div class="mb-3">
+      <p-message size="small">¡Ya alcanzaste el máximo de ingredientes! Si quieres, puedes cambiar uno por otro. 🍕😋</p-message>
+    </div>
+
+   }
       <div class="grid grid-cols-4 gap-5">
         @for(topping of toppings; track $index) {
           
-          <div (click)="topping.selected = !topping.selected"
+          <div (click)="selectTopping(topping)"
                 [class.active]="topping.selected"
                 class="place-content-end place-content-center
                   rounded-xl p-2
@@ -25,10 +33,12 @@ import { Component } from '@angular/core';
   `
 })
 export class PizzaToppingsComponent {
+  stateService = inject(StateService)
+  messageService = inject(MessageService)
   
   toppings = [
-    { label: 'Anchoa', key: 'anchovy', selected: true },
-    { label: 'Tocineta', key: 'bacon', selected: true },
+    { label: 'Anchoa', key: 'anchovy', selected: false },
+    { label: 'Tocineta', key: 'bacon', selected: false },
     { label: 'Basil', key: 'basil', selected: false },
     { label: 'Jalapeño', key: 'chili', selected: false },
     { label: 'Mozzarella', key: 'mozzarella', selected: false },
@@ -42,4 +52,16 @@ export class PizzaToppingsComponent {
   ];
 
   value: string[] = [];
+
+  selectTopping(topping: any){
+    if(this.stateService.toppingsSelected().length >= 6 && !topping.selected) {
+      return;
+    }
+    topping.selected = !topping.selected
+    if(topping.selected) {
+      this.stateService.toppingsSelected().push(topping)
+    } else {
+      this.stateService.toppingsSelected.set(this.stateService.toppingsSelected().filter(toppingSelected => toppingSelected.key !== topping.key))
+    }
+  }
 }
