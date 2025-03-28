@@ -9,12 +9,15 @@ import { PizzaToppingsComponent } from './components/pizza-toppings/pizza-toppin
 import { PizzaViewerComponent } from './components/pizza-viewer/pizza-viewer.component';
 import { PizzaSummaryComponent } from './components/pizza-summary/pizza-summary.component';
 import { StateService } from './state.service';
+import { AccordionContent, AccordionModule } from 'primeng/accordion';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    AccordionModule,
+    AccordionContent
   ],
   declarations: [
     PizzaAppComponent,

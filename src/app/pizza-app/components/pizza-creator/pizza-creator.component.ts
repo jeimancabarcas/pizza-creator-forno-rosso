@@ -11,59 +11,48 @@ import { StateService } from '../../state.service';
     <div class="pizza-creator">
 
       <h2>
-        Choose your pizzas
+        Selecciona tus Pizzas
         <button class="button" type="button" (click)="addPizza()">
           <i class="fa fa-plus"></i>
-          Add pizza
+          Agregar pizza
         </button>
       </h2>
-      
-      <div *ngFor="let pizza of pizzas.controls; let i = index;">
-        <div class="pizza-creator__header" (click)="togglePizza(i)">
-          
-          <i 
-            class="fa fa-fw pizza-creator__icon"
-            [class.fa-chevron-down]="openPizza !== i"
-            [class.fa-chevron-up]="openPizza === i"></i>
-          Pizza {{ i + 1 }}
+      <p-accordion value="0">
+        
+        @for(pizza of pizzas.controls; track pizza.name; let i = $index) {
+          <p-accordion-panel value="0">
+              <p-accordion-header>
+                <span class="flex justify-between items-center gap-2 w-full px-2">
+                    <span class="font-bold whitespace-nowrap">
+                      Pizza #{{i + 1}}
+                    </span>
 
-          <i 
-            class="fa fa-fw pizza-creator__status"
-            [class.fa-check]="pizza.valid"
-            [class.fa-times]="pizza.invalid"></i>
+                    Eliminar
+                </span>
 
-          <div 
-            class="pizza-creator__delete"
-            *ngIf="pizzas.controls.length > 1"
-            (click)="removePizza(i)">
-            <i class="fa fa-trash fa-fw"></i>
-          </div>
+              </p-accordion-header>
+              <p-accordion-content>
+                <div>
+                  
+                  <h3>Selecciona el tamaño <span class="required">*</span></h3>
+                  <pizza-size 
+                    formControlName="size">
+                  </pizza-size>
 
-        </div>
+                  <h3>Selecciona los ingredientes</h3>
 
-        <div 
-          class="pizza-creator__content"
-          [class.pizza-creator__content--open]="openPizza === i"
-          [formGroup]="pizza">
-
-          <h3>Select the size <span class="required">*</span></h3>
-          <pizza-size 
-            formControlName="size">
-          </pizza-size>
-
-          <h3>Pick your toppings</h3>
-          
-          <pizza-viewer
-            [pizzas]="pizzas"
-            [activePizza]="0">
-          </pizza-viewer>
-          <pizza-toppings 
-            formControlName="toppings">
-          </pizza-toppings>
-
-        </div>
-
-      </div>
+                  <pizza-viewer
+                    [pizzas]="pizzas"
+                    [activePizza]="0">
+                  </pizza-viewer>
+                  <pizza-toppings 
+                    formControlName="toppings">
+                  </pizza-toppings>
+                </div>
+              </p-accordion-content>
+          </p-accordion-panel>
+        }
+      </p-accordion>
     </div>
   `
 })
