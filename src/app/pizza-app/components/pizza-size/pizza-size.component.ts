@@ -13,11 +13,24 @@ export const PIZZA_SIZE_ACCESSOR = {
   styleUrls: ['pizza-size.component.scss'],
   standalone: false,
   template: `
-  <div class="grid grid-cols-2 gap-4 w-full">
+  <div class="flex justify-between  w-full">
     @for(size of sizes; track size.type) {
 
-      <p-card [header]="size.label">
-      </p-card>
+    <div class="place-content-center" pTooltip="{{size.label}} ({{size.slices}} Porciones)" tooltipPosition="top" placeholder="Top">
+      <div class="flex justify-center">
+        
+        <img
+          src="assets/pizzas/{{size.type}}.png" 
+          width="{{size.inches * 2}}" 
+          alt="">
+      </div>
+      <div class="flex justify-center">
+        <span class="text-sm font-normal">{{size.label}}</span>
+      </div>
+      <div class="flex justify-center">
+        <span class="text-xs font-light">({{size.slices}} Porciones)</span>
+      </div>
+    </div>
     }
   </div>
     <!-- <div class="pizza-size section">
@@ -49,9 +62,9 @@ export const PIZZA_SIZE_ACCESSOR = {
 })
 export class PizzaSizeComponent {
   sizes: any[] = [
-    { type: 'large', inches: 40, label: 'Grande' },
-    { type: 'medium', inches: 33, label: 'Mediana' },
-    { type: 'small', inches: 27, label: 'Small' },
-    { type: 'personal', inches: 20, label: 'Pizzeta' },
+    { type: 'large', inches: 40, label: 'Grande', slices: 10 },
+    { type: 'medium', inches: 33, label: 'Mediana', slices: 8 },
+    { type: 'small', inches: 27, label: 'Small', slices: 6 },
+    { type: 'personal', inches: 20, label: 'Pizzeta', slices: 4 },
   ];
 }

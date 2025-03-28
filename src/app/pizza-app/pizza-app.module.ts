@@ -11,6 +11,7 @@ import { PizzaSummaryComponent } from './components/pizza-summary/pizza-summary.
 import { StateService } from './state.service';
 import { AccordionContent, AccordionModule } from 'primeng/accordion';
 import { CardModule } from 'primeng/card';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { CardModule } from 'primeng/card';
     FormsModule,
     AccordionModule,
     AccordionContent,
-    CardModule
+    CardModule,
+    TooltipModule
   ],
   declarations: [
     PizzaAppComponent,

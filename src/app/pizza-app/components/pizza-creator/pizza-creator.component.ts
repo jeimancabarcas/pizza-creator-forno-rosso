@@ -35,18 +35,16 @@ import { StateService } from '../../state.service';
                 <div>
                   
                   <h3>Selecciona el tamaño <span class="required">*</span></h3>
-                  <pizza-size 
-                    formControlName="size">
+                  <pizza-size>
                   </pizza-size>
 
                   <h3>Selecciona los ingredientes</h3>
 
-                  <pizza-viewer
+                  <!-- <pizza-viewer
                     [pizzas]="pizzas"
                     [activePizza]="0">
-                  </pizza-viewer>
-                  <pizza-toppings 
-                    formControlName="toppings">
+                  </pizza-viewer> -->
+                  <pizza-toppings >
                   </pizza-toppings>
                 </div>
               </p-accordion-content>

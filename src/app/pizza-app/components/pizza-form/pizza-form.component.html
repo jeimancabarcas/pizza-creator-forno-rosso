@@ -1,4 +1,9 @@
 <form (ngSubmit)="onSubmit($event)" [formGroup]="form">
+  <pizza-creator>
+  </pizza-creator>
+
+  <pizza-summary>
+    </pizza-summary> 
     <div >
       <div class="border-b border-gray-900/10 pb-3">
         <h2 class="text-base/7 font-semibold text-gray-900">Digita tu información</h2>
@@ -46,9 +51,4 @@
       <button type="button" class="text-sm/6 font-semibold text-gray-900">Cancel</button>
       <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
     </div>
-        <pizza-creator>
-        </pizza-creator>
-  
-       <pizza-summary>
-        </pizza-summary> 
   </form>
