@@ -17,7 +17,7 @@ import { MessageService } from 'primeng/api';
         @for(topping of toppings; track $index) {
           
           <div (click)="selectTopping(topping)"
-                [class.active]="topping.selected"
+                [class.active]="verifyToppingSelected(topping)"
                 class="place-content-end place-content-center
                   rounded-xl p-2
                   cursor-pointer grayscale hover:grayscale-0 transition duration-200">
@@ -54,14 +54,17 @@ export class PizzaToppingsComponent {
   value: string[] = [];
 
   selectTopping(topping: any){
-    if(this.stateService.toppingsSelected().length >= 6 && !topping.selected) {
-      return;
-    }
-    topping.selected = !topping.selected
-    if(topping.selected) {
+    if(!this.verifyToppingSelected(topping)) {
+      if(this.stateService.toppingsSelected().length >= 6) {
+        return;
+      }
       this.stateService.toppingsSelected().push(topping)
     } else {
       this.stateService.toppingsSelected.set(this.stateService.toppingsSelected().filter(toppingSelected => toppingSelected.key !== topping.key))
     }
+  }
+
+  verifyToppingSelected(topping: any) {
+    return this.stateService.toppingsSelected().find((value) => topping.key === value.key)
   }
 }

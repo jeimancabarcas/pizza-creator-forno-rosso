@@ -10,15 +10,15 @@ import { StateService } from '../../state.service';
     <div class="pizza-creator">
       <div class="flex items-center">
           <p-checkbox inputId="ingredient1" (onChange)="selectAdditional()" name="pizza" value="cheeseAddition" [(ngModel)]="additional" />
-          <label for="ingredient1" class="ml-2"> Quiero una adicion de queso ({{additionCheese | currency:'USD':'symbol':'1.0-0'}})</label>
+          <label for="ingredient1" class="ml-2 text-sm font-normal"> Quiero una adicion de queso ({{additionCheese | currency:'USD':'symbol':'1.0-0'}})</label>
       </div>
       <div class="flex items-center">
           <p-checkbox inputId="ingredient2" (onChange)="selectAdditional()" name="pizza" value="cheeseBorder" [(ngModel)]="additional" />
-          <label for="ingredient2" class="ml-2"> Quiero borde de queso ({{cheeseBorderPrice | currency:'USD':'symbol':'1.0-0'}})</label>
+          <label for="ingredient2" class="ml-2 text-sm font-normal"> Quiero borde de queso ({{cheeseBorderPrice | currency:'USD':'symbol':'1.0-0'}})</label>
       </div>
       <div class="flex items-center">
           <p-checkbox inputId="ingredient3" (onChange)="selectAdditional()" name="pizza" value="braised" [(ngModel)]="additional" />
-          <label for="ingredient3" class="ml-2"> Quiero que mi pizza sea estofada  ({{braisedPrice | currency:'USD':'symbol':'1.0-0'}})</label>
+          <label for="ingredient3" class="ml-2 text-sm font-normal"> Quiero que mi pizza sea estofada  ({{braisedPrice | currency:'USD':'symbol':'1.0-0'}})</label>
       </div>
     </div>
   `

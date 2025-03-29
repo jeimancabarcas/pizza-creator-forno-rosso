@@ -20,6 +20,7 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { MessageModule } from 'primeng/message';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { MessageModule } from 'primeng/message';
     DialogModule,
     ButtonModule,
     ToastModule,
-    MessageModule
+    MessageModule,
+    TableModule
   ],
   declarations: [
     PizzaAppComponent,

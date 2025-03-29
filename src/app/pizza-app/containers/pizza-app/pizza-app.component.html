@@ -1,13 +1,20 @@
-
+<div class="flex justify-center">
+  <img src="/assets/logobase.png" width="200" alt="Logo">
+</div>
 <div class="p-3 w-full">
-  <p-button (click)="showDialog()" label="Agregar Pizza" icon="pi-plus" />
+  <h2 class="text-base/7 font-semibold text-gray-900">¡Bienvenido al Creador de Pizzas de Forno Rosso! 🍕</h2>
+  <p class="text-sm text-gray-700  mt-3">
+    Aquí puedes armar tu pizza perfecta eligiendo el tamaño, los ingredientes y las adiciones que más te gusten. 
+    ¡Déjate llevar por tu antojo y crea una combinación única y agregala a tu pedido haciendo click en el siguiente boton! 😋
+  </p>
+  <p-button [outlined]="true" (click)="showDialog()" label="Agregar Pizza" icon="pi-plus" styleClass="my-3"/>
     <div>
+      <pizza-summary>
+        </pizza-summary> 
       <pizza-form>
         </pizza-form>
-        <pizza-summary>
-          </pizza-summary> 
+      <p-button (click)="showDialog()" label="Crear Orden" icon="pi-plus" />
     </div>
-  <p-button (click)="showDialog()" label="Crear Orden" icon="pi-plus" />
   </div>
 <p-dialog header="Agregar Pizza" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
 
@@ -16,32 +23,44 @@
         [pizzas]="pizzas"
         [activePizza]="0">
       </pizza-viewer> -->
-      <p>
-        Los precios de las adiciones e ingredientes variaran dependiendo del tamaño de tu pizza
-      </p>
+      <div class="mb-3">
+        <div class="text-sm font-light border-gray-400 border p-2 bg-gray-100 rounded-xl">
+          Los precios de los ingredientes y adiciones cambian según el tamaño de tu pizza. 
+          🍕✨ La base siempre incluye pasta de tomate y queso, pero puedes personalizarla agregando hasta 6 ingredientes más. 
+          🤩 Además, puedes hacerla estofada con borde de queso. ¡La imaginación es el límite! 🔥🧀
+
+        </div>
+      </div>
       <div>
-        <h3>Selecciona el tamaño <span class="required">*</span></h3>
+        <strong>
+          <h3>Selecciona el tamaño <span class="required">*</span></h3>
+        </strong>
         <div class="mt-4">
           <pizza-size>
           </pizza-size>
         </div>
       </div>
       <div class="mt-4">
-        <h3>Selecciona los ingredientes (Maximo 6) *</h3>
+        <strong>
+          <h3>Selecciona los ingredientes (Maximo 6)</h3>
+        </strong>
         <div class="mt-4">
           <pizza-toppings>
           </pizza-toppings>
         </div>
       </div>
       <div class="mt-4">
-        <h3>Adiciones</h3>
+        <strong>
+          <h3>Adiciones</h3>
+        </strong>
         <div class="mt-4">
           <pizza-creator>
           </pizza-creator>
         </div>
       </div>
-      <div class="mt-2 flex items-center justify-end gap-x-6">
-        <p-button (onClick)="savePizza()" label="Guardar" icon="pi-save" />
-      </div>
     </div>
+    <ng-template #footer>
+        <p-button label="Cancel" [text]="true" severity="secondary" (click)="visible = false" />
+        <p-button label="Save" [outlined]="true" (onClick)="savePizza()"  severity="primary" (click)="visible = false" />
+    </ng-template>
 </p-dialog>
