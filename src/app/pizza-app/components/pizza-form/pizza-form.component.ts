@@ -11,13 +11,9 @@ import { StateService } from '../../state.service';
 })
 export class PizzaFormComponent {
   form: FormGroup;
-  total: number;
-  prices: any;
   
   constructor(private stateService: StateService) {
     this.form = this.stateService.form;
-    this.total = this.stateService.total;
-    this.prices = this.stateService.prices;
   }
 
   onSubmit(event: any) {

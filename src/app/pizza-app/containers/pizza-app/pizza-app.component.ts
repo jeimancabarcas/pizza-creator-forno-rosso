@@ -42,6 +42,7 @@ export class PizzaAppComponent implements OnInit {
     console.log("Size", this.stateService.sizeSelected())
     console.log("Toppings", this.stateService.toppingsSelected())
     console.log("Additions", this.stateService.additional)
+    this.stateService.addPizza()
   }
 
 

@@ -7,8 +7,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class StateService {
   fb = inject(FormBuilder)
   form!: FormGroup;
-  activePizza = 0;
-  total = 0;
   sizeSelected = signal({
       type: 'large', 
       inches: 40, 
@@ -21,7 +19,9 @@ export class StateService {
   })
   toppingsSelected = signal<any[]>([])
   additional = []
+  
 
+  pizzas = signal<any[]>([]);
   prices: any = {
     small: { base: 9.99, toppings: 0.69 },
     medium: { base: 12.99, toppings: 0.99 },
@@ -37,5 +37,27 @@ export class StateService {
       size: ['small', Validators.required],
       toppings: [[]]
     });
+  }
+
+  addPizza() {
+    const pizza = {
+      size: this.sizeSelected(),
+      toppings: this.toppingsSelected(),
+      additions: this.additional
+    }
+    this.pizzas.update((pizzas) => [...pizzas, pizza]);
+    this.sizeSelected.set({
+      type: 'large', 
+      inches: 40, 
+      label: 'Grande', 
+      slices: 10, 
+      ingredientPrice: 5000,
+      cheeseBorderPrice: 200,
+      braisedPrice: 10000,
+      additionCheese: 10000
+    })
+    this.toppingsSelected.set([])
+    this.additional = []
+    console.log(this.pizzas())
   }
 }
