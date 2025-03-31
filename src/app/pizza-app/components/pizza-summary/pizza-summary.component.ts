@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy, inject, effect } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, inject, effect, output } from '@angular/core';
 
 import { FormGroup } from '@angular/forms';
 import { StateService } from '../../state.service';
@@ -11,6 +11,7 @@ import { StateService } from '../../state.service';
 })
 export class PizzaSummaryComponent {
   stateService = inject(StateService);
+  editPizza = output<any>();
 
   pizzas: any = [];
   constructor() {
@@ -30,8 +31,16 @@ export class PizzaSummaryComponent {
     let total = 0;
     this.pizzas?.forEach((pizza: any) => {
       total += this.getTotalPizza(pizza);
-      console.log(total)
     });
     return total;
+  }
+
+  openEditPizza(pizza: any, index: number) {
+    this.stateService.editPizza(pizza, index)
+    this.editPizza.emit(pizza)
+  }
+
+  deletePizza(index: number) {
+    this.stateService.deletePizza(index)
   }
 }

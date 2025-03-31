@@ -15,9 +15,6 @@ export class PizzaAppComponent implements OnInit {
 
   visible: boolean = false;
 
-  showDialog() {
-      this.visible = true;
-  }
   constructor() {
     
     this.stateService.form = this.stateService.fb.group({
@@ -39,11 +36,14 @@ export class PizzaAppComponent implements OnInit {
   }
 
   savePizza() {
-    console.log("Size", this.stateService.sizeSelected())
-    console.log("Toppings", this.stateService.toppingsSelected())
-    console.log("Additions", this.stateService.additional)
     this.stateService.addPizza()
   }
+  showDialog() {
+    this.visible = true;
+  }
 
-
+  editPizza(pizza: any) {
+    this.showDialog();
+    console.log("PIZZA", pizza)
+  }
 }

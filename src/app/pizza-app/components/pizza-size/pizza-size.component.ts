@@ -32,7 +32,9 @@ export class PizzaSizeComponent implements OnInit{
   sizes: any[]
   
   ngOnInit(): void {
-    this.selectSize(this.sizes[0])
+    if(this.stateService.pizzaEditingIndex() === null) {
+      this.selectSize(this.sizes[0])
+    }
   }
 
   sizeSelected: any;
@@ -40,6 +42,8 @@ export class PizzaSizeComponent implements OnInit{
     effect(() => {
       if(!this.stateService.sizeSelected()) {
         this.selectSize(this.sizes[0])
+      } else {
+        this.selectSize(this.stateService.sizeSelected())
       }
     });
     this.sizes = [

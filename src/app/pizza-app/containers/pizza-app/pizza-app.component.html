@@ -7,17 +7,17 @@
     Aquí puedes armar tu pizza perfecta eligiendo el tamaño, los ingredientes y las adiciones que más te gusten. 
     ¡Déjate llevar por tu antojo y crea una combinación única y agregala a tu pedido haciendo click en el siguiente boton! 😋
   </p>
-  <p-button [outlined]="true" (click)="showDialog()" label="Agregar Pizza" icon="pi-plus" styleClass="my-3"/>
+  <p-button [outlined]="true" (click)="showDialog()" label="Agregar Pizza" icon="pi pi-plus" styleClass="my-3"/>
   <div class="md:grid md:grid-cols-2 md:gap-6">
     <div>
       <div>
 
-        <pizza-summary></pizza-summary> 
+        <pizza-summary (editPizza)="editPizza($event)"></pizza-summary> 
       </div>
     </div>
     <div>
       <pizza-form></pizza-form>
-      <p-button (click)="showDialog()" label="Crear Orden" icon="pi-plus" />
+      <p-button (click)="showDialog()" label="Crear Orden" icon="pi pi-file-check" />
     </div>
   </div>
 </div>

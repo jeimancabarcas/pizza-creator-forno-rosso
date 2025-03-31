@@ -14,26 +14,32 @@
                 <div class="flex justify-between w-full items-center text-gray-700 text-base font-semibold">
                     <div class="flex justify-center">
                         <div class="content-center">
-
                             <img
                             src="assets/pizzas/{{pizza.size.type}}.png" 
                             width="30"
                             alt="">
                         </div>
-                          <span class="mx-3 content-center">
-                              Pizza {{pizza.size?.label}}
-                              @if(pizza.toppings?.length){
-                                  con {{pizza.toppings?.length}} Ingredient{{pizza.toppings?.length > 1 ? 'es' : 'e'}} 
-                              } 
-                              @if(pizza.additions?.length){
-                                 y {{pizza.additions?.length}} Adicional{{pizza.additions?.length > 1 ? 'es' : ''}} 
-                              } 
-                          </span>
-                      </div>
+                        <div class="mx-3 content-center">
+
+                            <span >
+                                Pizza {{pizza.size?.label}}
+                                @if(pizza.toppings?.length){
+                                    con {{pizza.toppings?.length}} Ingredient{{pizza.toppings?.length > 1 ? 'es' : 'e'}} 
+                                } 
+                                @if(pizza.additions?.length){
+                                    y {{pizza.additions?.length}} Adicional{{pizza.additions?.length > 1 ? 'es' : ''}} 
+                                } 
+                            </span>
+                        </div>
+                    </div>
                     <span>
                         {{ getTotalPizza(pizza)  | currency:'USD':'symbol':'1.0-0'}}
                     </span>
 
+                </div>
+                <div class="flex flex-row-reverse">
+                    <p-button (onClick)="openEditPizza(pizza, i)" icon="pi pi-pencil" severity="secondary" rounded="true" styleClass="ml-2" aria-label="" />
+                    <p-button (onClick)="deletePizza(i)" icon="pi pi-trash" severity="secondary" rounded="true" styleClass="ml-2" aria-label="" />
                 </div>
                 <div class="my-2 text-sm text-gray-700 ml-2">
                     <h2>

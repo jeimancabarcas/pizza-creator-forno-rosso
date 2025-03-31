@@ -11,6 +11,7 @@ export class StateService {
   toppingsSelected = signal<any[]>([])
   additional = signal<any[]>([]);
   pizzas = signal<any[]>([]);
+  pizzaEditingIndex = signal<any>(null)
 
   constructor() { }
 
@@ -38,12 +39,35 @@ export class StateService {
           addition.price = this.sizeSelected().braisedPrice
         }
         return addition
-      })
+      }),
+      originalSelection: {
+        size: this.sizeSelected(),
+        toppings: this.toppingsSelected(),
+        additions: this.additional()
+      }
     }
-    this.pizzas.update((pizzas) => [...pizzas, pizza]);
+    if(this.pizzaEditingIndex() !== null) {
+
+      this.pizzas.update((pizzas) => {
+        return pizzas.map((p, i) => i === this.pizzaEditingIndex() ? { ...p, ...pizza } : p);
+      });
+    }else {
+      this.pizzas.update((pizzas) => [...pizzas, pizza]);
+    }
     this.sizeSelected.set(null)
     this.toppingsSelected.set([])
     this.additional.set([]);
-    console.log(this.pizzas())
+    this.pizzaEditingIndex.set(null);
+  }
+
+  editPizza(pizza: any, index: number) {
+    this.pizzaEditingIndex.set(index);
+    this.sizeSelected.set(pizza.originalSelection.size)
+    this.toppingsSelected.set(pizza.originalSelection.toppings)
+    this.additional.set(pizza.originalSelection.additions)
+  }
+
+  deletePizza(index: number) {
+    this.pizzas().splice(index, 1);
   }
 }
