@@ -17,7 +17,7 @@
     </div>
     <div>
       <pizza-form></pizza-form>
-      <p-button (click)="showDialog()" label="Crear Orden" icon="pi pi-file-check" />
+      <p-button (click)="sendOrder()" [disabled]="pizzas.length === 0 || !form.valid" label="Crear Orden" icon="pi pi-file-check" />
     </div>
   </div>
 </div>
@@ -66,7 +66,7 @@
       </div>
     </div>
     <ng-template #footer>
-        <p-button label="Cancel" [text]="true" severity="secondary" (click)="visible = false" />
-        <p-button label="Save" [outlined]="true" (onClick)="savePizza()"  severity="primary" (click)="visible = false" />
+        <p-button label="Cancelar" [text]="true" severity="secondary" (click)="visible = false" />
+        <p-button label="Guardar" [outlined]="true" (onClick)="savePizza()"  severity="primary" (click)="visible = false" />
     </ng-template>
 </p-dialog>

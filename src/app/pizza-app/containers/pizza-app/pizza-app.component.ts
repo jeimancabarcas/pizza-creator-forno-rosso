@@ -24,10 +24,7 @@ export class PizzaAppComponent implements OnInit {
         whatsappPhone: ['', Validators.required],
         phone: ['', Validators.required],
         address: ['', [Validators.required, Validators.minLength(3)]],
-      }),
-      pizzas: this.stateService.fb.array([
-        this.stateService.createPizza()
-      ])
+      })
     });
 
   }
@@ -38,6 +35,12 @@ export class PizzaAppComponent implements OnInit {
   savePizza() {
     this.stateService.addPizza()
   }
+
+  sendOrder() {
+    console.log(this.stateService.pizzas())
+    console.log(this.stateService.form.value)
+  }
+
   showDialog() {
     this.visible = true;
   }
@@ -45,5 +48,12 @@ export class PizzaAppComponent implements OnInit {
   editPizza(pizza: any) {
     this.showDialog();
     console.log("PIZZA", pizza)
+  }
+
+  get pizzas() {
+    return this.stateService.pizzas()
+  }
+  get form() {
+    return this.stateService.form
   }
 }

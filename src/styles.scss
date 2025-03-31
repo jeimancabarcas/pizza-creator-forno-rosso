@@ -1,2 +1,5 @@
 @use "tailwindcss";
+.focus\:outline-indigo-600:focus {
+    outline-color: #9e9e9e !important;
+}
 @import "primeicons/primeicons.css";
