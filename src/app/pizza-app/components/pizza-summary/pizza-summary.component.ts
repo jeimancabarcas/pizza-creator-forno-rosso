@@ -19,8 +19,19 @@ export class PizzaSummaryComponent {
       console.log('Nueva lista de pizzas:', this.pizzas);
     });
   }
-  
-  
-  
-  customers!: any[];
+
+  getTotalPizza(pizza: any) {
+    const totalToppings = pizza.toppings.reduce((suma: any, value: any) => suma + value.price, 0);
+    const totalAdditions = pizza.additions.reduce((suma: any, value: any) => suma + value.price, 0);
+    return totalAdditions + totalToppings + pizza.size.price
+  }
+
+  getTotal() {
+    let total = 0;
+    this.pizzas?.forEach((pizza: any) => {
+      total += this.getTotalPizza(pizza);
+      console.log(total)
+    });
+    return total;
+  }
 }

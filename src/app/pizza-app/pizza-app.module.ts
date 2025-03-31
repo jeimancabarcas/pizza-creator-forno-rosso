@@ -21,6 +21,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { MessageModule } from 'primeng/message';
 import { TableModule } from 'primeng/table';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { TableModule } from 'primeng/table';
     ButtonModule,
     ToastModule,
     MessageModule,
-    TableModule
+    TableModule,
+    DividerModule
   ],
   declarations: [
     PizzaAppComponent,

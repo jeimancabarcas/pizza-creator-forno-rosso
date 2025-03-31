@@ -7,27 +7,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class StateService {
   fb = inject(FormBuilder)
   form!: FormGroup;
-  sizeSelected = signal({
-      type: 'large', 
-      inches: 40, 
-      label: 'Grande', 
-      slices: 10, 
-      ingredientPrice: 5000,
-      cheeseBorderPrice: 200,
-      braisedPrice: 10000,
-      additionCheese: 10000
-  })
+  sizeSelected = signal<any>(null)
   toppingsSelected = signal<any[]>([])
-  additional = []
-  
-
+  additional = signal<any[]>([]);
   pizzas = signal<any[]>([]);
-  prices: any = {
-    small: { base: 9.99, toppings: 0.69 },
-    medium: { base: 12.99, toppings: 0.99 },
-    large: { base: 16.99, toppings: 1.29 }
-  };
-
 
   constructor() { }
 
@@ -42,22 +25,25 @@ export class StateService {
   addPizza() {
     const pizza = {
       size: this.sizeSelected(),
-      toppings: this.toppingsSelected(),
-      additions: this.additional
+      toppings: this.toppingsSelected().map(topping => ({
+        ...topping,
+        price: this.sizeSelected() ? this.sizeSelected()?.ingredientPrice : 0
+      })),
+      additions: this.additional().map((addition: any) => {
+        if(addition.key === 'cheeseBorder'){
+          addition.price = this.sizeSelected().cheeseBorderPrice
+        } else if(addition.key === 'additionCheese') {
+          addition.price = this.sizeSelected().additionCheese
+        } else if(addition.key === 'braised') {
+          addition.price = this.sizeSelected().braisedPrice
+        }
+        return addition
+      })
     }
     this.pizzas.update((pizzas) => [...pizzas, pizza]);
-    this.sizeSelected.set({
-      type: 'large', 
-      inches: 40, 
-      label: 'Grande', 
-      slices: 10, 
-      ingredientPrice: 5000,
-      cheeseBorderPrice: 200,
-      braisedPrice: 10000,
-      additionCheese: 10000
-    })
+    this.sizeSelected.set(null)
     this.toppingsSelected.set([])
-    this.additional = []
+    this.additional.set([]);
     console.log(this.pizzas())
   }
 }

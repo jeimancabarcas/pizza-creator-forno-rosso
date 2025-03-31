@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { StateService } from '../../state.service';
 @Component({
   selector: 'pizza-size',
@@ -27,53 +27,67 @@ import { StateService } from '../../state.service';
   </div>
   `
 })
-export class PizzaSizeComponent {
+export class PizzaSizeComponent implements OnInit{
+
+  sizes: any[]
+  
+  ngOnInit(): void {
+    this.selectSize(this.sizes[0])
+  }
 
   sizeSelected: any;
   constructor(private stateService: StateService) {
-    this.selectSize(this.sizes[0])
+    effect(() => {
+      if(!this.stateService.sizeSelected()) {
+        this.selectSize(this.sizes[0])
+      }
+    });
+    this.sizes = [
+      { 
+        type: 'large', 
+        inches: 40, 
+        label: 'Grande', 
+        slices: 10, 
+        ingredientPrice: 5000,
+        cheeseBorderPrice: 12000,
+        braisedPrice: 10000,
+        additionCheese: 10000,
+        price: 20000
+      },
+      { 
+        type: 'medium', 
+        inches: 33, 
+        label: 'Mediana', 
+        slices: 8, 
+        ingredientPrice: 4000,
+        cheeseBorderPrice: 8000,
+        braisedPrice: 10000,
+        additionCheese: 10000,
+        price: 15000
+      },
+      { 
+        type: 'small', 
+        inches: 27, 
+        label: 'Small', 
+        slices: 6, 
+        ingredientPrice: 3000,
+        cheeseBorderPrice: 6000,
+        braisedPrice: 10000,
+        additionCheese: 10000,
+        price: 12000
+      },
+      { type: 'personal', 
+        inches: 20, 
+        label: 'Pizzeta', 
+        slices: 4, 
+        ingredientPrice: 2000,
+        cheeseBorderPrice: 5000,
+        braisedPrice: 10000,
+        additionCheese: 10000,
+        price: 10000
+      },
+    ];
   }
-  sizes: any[] = [
-    { 
-      type: 'large', 
-      inches: 40, 
-      label: 'Grande', 
-      slices: 10, 
-      ingredientPrice: 5000,
-      cheeseBorderPrice: 12000,
-      braisedPrice: 10000,
-      additionCheese: 10000
-    },
-    { 
-      type: 'medium', 
-      inches: 33, 
-      label: 'Mediana', 
-      slices: 8, 
-      ingredientPrice: 4000,
-      cheeseBorderPrice: 8000,
-      braisedPrice: 10000,
-      additionCheese: 10000
-    },
-    { 
-      type: 'small', 
-      inches: 27, 
-      label: 'Small', 
-      slices: 6, 
-      ingredientPrice: 3000,
-      cheeseBorderPrice: 6000,
-      braisedPrice: 10000,
-      additionCheese: 10000
-    },
-    { type: 'personal', 
-      inches: 20, 
-      label: 'Pizzeta', 
-      slices: 4, 
-      ingredientPrice: 2000,
-      cheeseBorderPrice: 5000,
-      braisedPrice: 10000,
-      additionCheese: 10000
-    },
-  ];
 
   selectSize(sizeSelected: any) {
     this.sizeSelected = sizeSelected;

@@ -1,4 +1,4 @@
-<div class="my-3">
+<div class="my-3 bg-gray-100 p-3 border border-gray-400 rounded-sm">
     
   <h2 class="text-xl font-semibold text-gray-900">Resumen de tu orden</h2>
   @if (!pizzas.length) {
@@ -8,67 +8,80 @@
       </p>
     
   }
-  <div class="my-3">
+  <div class="my-3 text-sm">
     <p-accordion >
     @for(pizza of pizzas; track $index; let i = $index){
-        <p-accordion-panel [value]="i">
-            <p-accordion-header>
-                <div class="flex justify-between w-full items-center text-gray-700">
-                    <span class="w-50">
-                        Pizza {{pizza.size?.label}}
-                        @if(pizza.toppings?.length){
-                            con {{pizza.toppings?.length}} Ingredient{{pizza.toppings?.length > 1 ? 'es' : 'e'}} 
-                        } 
-                        @if(pizza.additions?.length){
-                           y {{pizza.additions?.length}} Adicional{{pizza.additions?.length > 1 ? 'es' : ''}} 
-                        } 
-                    </span>
-                    <span class="mr-2">
-                        $45000
+                <div class="flex justify-between w-full items-center text-gray-700 text-base font-semibold">
+                    <div class="flex justify-center">
+                        <div class="content-center">
+
+                            <img
+                            src="assets/pizzas/{{pizza.size.type}}.png" 
+                            width="30"
+                            alt="">
+                        </div>
+                          <span class="mx-3 content-center">
+                              Pizza {{pizza.size?.label}}
+                              @if(pizza.toppings?.length){
+                                  con {{pizza.toppings?.length}} Ingredient{{pizza.toppings?.length > 1 ? 'es' : 'e'}} 
+                              } 
+                              @if(pizza.additions?.length){
+                                 y {{pizza.additions?.length}} Adicional{{pizza.additions?.length > 1 ? 'es' : ''}} 
+                              } 
+                          </span>
+                      </div>
+                    <span>
+                        {{ getTotalPizza(pizza)  | currency:'USD':'symbol':'1.0-0'}}
                     </span>
 
                 </div>
-            </p-accordion-header>
-            <p-accordion-content>
-                <div class="my-2">
+                <div class="my-2 text-sm text-gray-700 ml-2">
                     <h2>
                         Base: 
                     </h2>
-                    <div class="flex justify-between text-sm text-gray-700">
+                    <div class="flex justify-between text-gray-500 ml-4">
                         <span class="w-50">{{pizza.size?.label}} con Queso y Pasta de Tomate</span>
-                        <span>$20000</span>
+                        <span>{{pizza.size?.price | currency:'USD':'symbol':'1.0-0'}}</span>
                     </div>
                 </div>
                 @if(pizza.toppings?.length > 0) {
-                    <div class="my-2">
+                    <div class="my-2 text-sm text-gray-700 ml-2">
                         <h2>
                             Ingredientes: 
                         </h2>
                             
                             @for(topping of pizza.toppings; track $index; let i = $index){
-                                <div class="flex justify-between text-sm text-gray-700">
+                                <div class="flex justify-between text-sm text-gray-500 ml-4">
                                     <span>{{topping.label}}</span>
-                                    <span>$3000</span>
+                                    {{topping.price | currency:'USD':'symbol':'1.0-0'}}
                                 </div>
                             }
                     </div>
                 }
                 @if(pizza.additions?.length > 0) {
-                    <div class="my-2">
+                    <div class="my-2 text-sm text-gray-700 ml-2">
                         <h2>
                             Adicionales: 
                         </h2>
-                        <div class="flex justify-between text-sm text-gray-700">
-                            @for(addition of pizza.additions; track $index; let i = $index){
-                                <span>{{addition}}</span>
-                                <span>$3000</span>
-                            }
-                        </div>
+                        @for(addition of pizza.additions; track $index; let i = $index){
+                            <div class="flex justify-between text-sm text-gray-500 ml-4">
+                                <span>{{addition?.value}}</span>
+                                <span>{{addition?.price | currency:'USD':'symbol':'1.0-0'}}</span>
+                            </div>
+                        }
                     </div>
                 }
-            </p-accordion-content>
-        </p-accordion-panel>
     }
     </p-accordion>
+  </div>
+  <p-divider />
+  <div class="flex justify-between">
+    <div>
+        <h2 class="text-xl font-semibold text-gray-900">Total </h2>
+
+    </div>
+    <div class="font-bold text-gray-900">
+        {{ getTotal()  | currency:'USD':'symbol':'1.0-0' }}
+    </div>
   </div>
 </div>

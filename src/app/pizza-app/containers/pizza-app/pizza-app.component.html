@@ -1,21 +1,27 @@
-<div class="flex justify-center">
+<div class="flex justify-center  lg:w-5xl lg:mx-auto">
   <img src="/assets/logobase.png" width="200" alt="Logo">
 </div>
-<div class="p-3 w-full">
-  <h2 class="text-base/7 font-semibold text-gray-900">¡Bienvenido al Creador de Pizzas de Forno Rosso! 🍕</h2>
+<div class="p-3 w-full lg:w-5xl lg:mx-auto">
+  <h2 class="text-base/7 font-semibold text-gray-900">¡Bienvenido al Creador de Pizzas de Forno Rosso!</h2>
   <p class="text-sm text-gray-700  mt-3">
     Aquí puedes armar tu pizza perfecta eligiendo el tamaño, los ingredientes y las adiciones que más te gusten. 
     ¡Déjate llevar por tu antojo y crea una combinación única y agregala a tu pedido haciendo click en el siguiente boton! 😋
   </p>
   <p-button [outlined]="true" (click)="showDialog()" label="Agregar Pizza" icon="pi-plus" styleClass="my-3"/>
+  <div class="md:grid md:grid-cols-2 md:gap-6">
     <div>
-      <pizza-summary>
-        </pizza-summary> 
-      <pizza-form>
-        </pizza-form>
+      <div>
+
+        <pizza-summary></pizza-summary> 
+      </div>
+    </div>
+    <div>
+      <pizza-form></pizza-form>
       <p-button (click)="showDialog()" label="Crear Orden" icon="pi-plus" />
     </div>
   </div>
+</div>
+
 <p-dialog header="Agregar Pizza" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
 
     <div>
